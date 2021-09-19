@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Projects of this client{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>Projects of this client</h1>
+
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Id Project</th>
+                <th>Id Client</th>
+                <th>LabelProject</th>
+                <th>BudgetProject</th>
+                <th>Description</th>
+                <th>DeadlineProject</th>
+                <th>ResponsibleProject</th>
+                <th>CreatedAt</th>
+                <th>UpdatedAt</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for project in projects %}
+                <tr>
+                    <td>{{ project.id }}</td>
+                    <td>{{ project.client.id }}</td>
+                    <td>{{ project.labelProject }}</td>
+                    <td>{{ project.budgetProject }}</td>
+                    <td>{{ project.description }}</td>
+                    <td>{{ project.deadlineProject ? project.deadlineProject|date('Y-m-d') : '' }}</td>
+                    <td>{{ project.responsibleProject }}</td>
+                    <td>{{ project.createdAt ? project.createdAt|date('Y-m-d') : '' }}</td>
+                    <td>{{ project.updated ? project.updated|date('Y-m-d') : '' }}</td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="10" class="btn btn-danger">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <a href="{{ path('client_index') }}" class="btn btn-dark">Back to list</a>
+
+    </div>
+
+{% endblock %}

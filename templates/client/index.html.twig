@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Client index{% endblock %}
+
+{% block body %}
+   <div class="container">
+       <h1>Client index</h1>
+
+       <table class="table">
+           <thead>
+           <tr>
+               <th>Id</th>
+               <th>NameClient                   </th>
+               <th>MailClient                   </th>
+               <th>NumClient                    </th>
+               <th>AdressClient                 </th>
+               <th>Actions                      </th>
+           </tr>
+           </thead>
+           <tbody>
+           {% for client in clients %}
+               <tr>
+                   <td>{{ client.id }}              </td>
+                   <td>{{ client.nameClient }}      </td>
+                   <td>{{ client.mailClient }}      </td>
+                   <td>{{ client.numClient }}       </td>
+                   <td>{{ client.adressClient }}    </td>
+                   <td>
+                       <a href="{{ path('client_show', {'id': client.id}) }}"class="btn btn-outline-secondary">Show</a>
+                       <a href="{{ path('client_edit', {'id': client.id}) }}"class="btn btn-outline-secondary">Edit</a>
+                       <a href="{{ path('client_showProjects', {'id': client.id}) }}"class="btn btn-secondary">Show Projects</a>
+                   </td>
+               </tr>
+           {% else %}
+               <tr>
+                   <td colspan="6">no records found </td>
+               </tr>
+           {% endfor %}
+           </tbody>
+       </table>
+
+       <a href="{{ path('client_new') }}"class="btn btn-success">Create New</a>
+
+       <br><br><br><br>
+       <form methode="post" action="{{ path('searchclient') }}">
+           <label ><h2>Search by client name </h2> </label>
+           <br>
+           <input type="text" name="search">
+           <input type="submit" value="Search">
+           <br>
+       </form>
+
+   </div>
+
+{% endblock %}
