@@ -91,4 +91,23 @@ class ProjectController extends AbstractController
 
         return $this->redirectToRoute('project_index', [], Response::HTTP_SEE_OTHER);
     }
+
+    /**
+     * @Route ("/searchproject",name="searchproject")
+     */
+
+    function serachClient(Request $request,ProjectRepository $repository){
+        $data=$request->get('search');
+        $project=$repository->findBy(['id'=>$data]);
+        return $this->render('project/index.html.twig',[
+            'project' => $project
+        ]);
+    }
+
+    /**
+     * @Route("/statProject", name="statProject")
+     */
+    public function statistiques(){
+        return $this->render('project/statProject.html.twig');
+    }
 }

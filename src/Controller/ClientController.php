@@ -118,4 +118,11 @@ class ClientController extends AbstractController
             'client' => $client
         ]);
     }
+
+    /**
+     * @Route("/statClient", name="statClient")
+     */
+    public function statistiques(){
+        return $this->render('client/statClient.html.twig');
+    }
 }

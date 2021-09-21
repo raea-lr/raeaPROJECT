@@ -47,5 +47,16 @@
         </table>
 
         <a href="{{ path('project_new') }}"class="btn btn-success">Create new</a>
+
+        <br><br><br><br>
+        <form methode="post" action="{{ path('searchproject') }}">
+            <label ><h2>Search by project budget </h2> </label>
+            <br>
+            <input type="text" name="search">
+            <input type="submit" value="Search">
+            <br>
+        </form>
+        <br><br><br><br>
+
     </div>
 {% endblock %}
