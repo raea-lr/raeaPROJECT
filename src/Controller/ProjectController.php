@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Client;
 use App\Entity\Project;
 use App\Form\ProjectType;
 use App\Repository\ProjectRepository;
@@ -96,9 +97,9 @@ class ProjectController extends AbstractController
      * @Route ("/searchproject",name="searchproject")
      */
 
-    function serachClient(Request $request,ProjectRepository $repository){
+    function serachProject(Request $request,ProjectRepository $repository){
         $data=$request->get('search');
-        $project=$repository->findBy(['id'=>$data]);
+        $project=$repository->findBy(['labelProject'=>$data]);
         return $this->render('project/index.html.twig',[
             'project' => $project
         ]);
@@ -107,7 +108,7 @@ class ProjectController extends AbstractController
     /**
      * @Route("/statProject", name="statProject")
      */
-    public function statistiques(){
-        return $this->render('project/statProject.html.twig');
+    public function statisProject(){
+        return $this->render('statistiques/statProject.html.twig');
     }
 }

@@ -13,23 +13,23 @@
     <br>
     <div class="container">
         <h1>Statistiques:</h1>
-        <h3>Repartition of clients by categorie</h3>
-        <canvas id="avancement" width="400" height="100"></canvas>
+        <h3>Repartition of projects by budget</h3>
+        <canvas id="budgetProject" width="400" height="100"></canvas>
     </div>
 {% endblock %}
 
 {% block javascripts %}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha512-s+xg36jbIujB2S2VKfpGmlC3T5V2TF3lY48DX7u2r9XzGzgPsa6wTpOQA7J9iffvdeBN0q9tKzRxVxw1JviZPg==" crossorigin="anonymous"></script>
     <script>
-        let avancement = document.querySelector("#avancement")
-        let avanGraph = new Chart(avancement, {
+        let budgetProject = document.querySelector("#budgetProject")
+        let budgetGraph = new Chart(budgetProject, {
             type: "pie",
             data: {
-                labels: ["Tunisian Client","Strange Client"],
+                labels: ["inf 1000","between 1000 and 2000","sup 2000"],
                 datasets: [{
-                    label: "Repartition of clients by categorie",
-                    data:  [3,3],
-                    backgroundColor: ["red","yellow"]
+                    label: "Repartition of projects by budget",
+                    data:  [2,3,1],
+                    backgroundColor: ["red","green","blue"]
                 }]
             }
         })

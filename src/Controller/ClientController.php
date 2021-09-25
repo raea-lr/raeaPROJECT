@@ -111,9 +111,9 @@ class ClientController extends AbstractController
      * @Route ("/searchclient",name="searchclient")
      */
 
-    function serachClient(Request $request,ClientRepository $repository){
+    function searchC(Request $request,ClientRepository $repository){
         $data=$request->get('search');
-        $client=$repository->findBy(['id'=>$data]);
+        $client=$repository->findBy(['adressClient'=>$data]);
         return $this->render('client/index.html.twig',[
             'client' => $client
         ]);
@@ -122,7 +122,9 @@ class ClientController extends AbstractController
     /**
      * @Route("/statClient", name="statClient")
      */
-    public function statistiques(){
-        return $this->render('client/statClient.html.twig');
+    public function statisClient(){
+        return $this->render('/statistiques/statClient.html.twig');
     }
+
+
 }
