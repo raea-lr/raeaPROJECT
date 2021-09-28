@@ -26,6 +26,24 @@ class ClientController extends AbstractController
             'clients' => $clientRepository->findAll(),
         ]);
     }
+    /**
+     * @Route("/stat", name="client_index2", methods={"GET"})
+     */
+    public function index2(ClientRepository $clientRepository): Response
+    {
+        return $this->render('client/statClient.html.twig', [
+            'clients' => $clientRepository->findAll(),
+        ]);
+    }
+    /**
+     * @Route("/cherche", name="client_index4", methods={"GET"})
+     */
+    public function index3(Request $request,ClientRepository $clientRepository): Response
+    {   $data=$request->get('search');
+        return $this->render('client/index.html.twig', [
+            'clients' => $clientRepository->findBy(['adressClient'=>$data]),
+        ]);
+    }
 
     /**
      * @Route("/new", name="client_new", methods={"GET","POST"})
@@ -107,24 +125,6 @@ class ClientController extends AbstractController
         return $this->redirectToRoute('client_index', [], Response::HTTP_SEE_OTHER);
     }
 
-    /**
-     * @Route ("/searchclient",name="searchclient")
-     */
-
-    function searchC(Request $request,ClientRepository $repository){
-        $data=$request->get('search');
-        $client=$repository->findBy(['adressClient'=>$data]);
-        return $this->render('client/index.html.twig',[
-            'client' => $client
-        ]);
-    }
-
-    /**
-     * @Route("/statClient", name="statClient")
-     */
-    public function statisClient(){
-        return $this->render('/statistiques/statClient.html.twig');
-    }
 
 
 }

@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Client;
 use App\Entity\Project;
 use App\Form\ProjectType;
+use App\Repository\ClientRepository;
 use App\Repository\ProjectRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -23,6 +24,25 @@ class ProjectController extends AbstractController
     {
         return $this->render('project/index.html.twig', [
             'projects' => $projectRepository->findAll(),
+        ]);
+    }
+    /**
+     * @Route("/statProject", name="project_index3", methods={"GET"})
+     */
+    public function index3(ProjectRepository $projectRepository): Response
+    {
+        return $this->render('client/statProject.html.twig', [
+            'projects' => $projectRepository->findAll(),
+        ]);
+    }
+
+    /**
+     * @Route("/cherche", name="client_index6", methods={"GET"})
+     */
+    public function index6(Request $request,ProjectRepository $projectRepository): Response
+    {   $data=$request->get('search');
+        return $this->render('project/index.html.twig', [
+            'projects' => $projectRepository->findBy(['labelProject'=>$data]),
         ]);
     }
 
@@ -105,10 +125,6 @@ class ProjectController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/statProject", name="statProject")
-     */
-    public function statisProject(){
-        return $this->render('statistiques/statProject.html.twig');
-    }
+
+
 }
